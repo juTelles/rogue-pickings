@@ -1,7 +1,8 @@
 const topMenu = () => {
-  const navMobile = document.getElementById("mobile");
+  const navMobile = document.getElementById("mobile-nav");
   const menuButton = document.getElementById("menu-button");
   const mobileWindow = window.matchMedia("(max-width: 1175px)").matches
+  const desktopWindow = window.matchMedia("(min-width: 1175px)").matches
   const navMobileDisplay = navMobile.style.display
   const menuText = document.getElementById("menu-text");
 
