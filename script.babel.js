@@ -1,21 +1,30 @@
-const topMenu = () => {
-  const navMobile = document.getElementById("mobile-nav");
-  const menuButton = document.getElementById("menu-button");
-  const mobileWindow = window.matchMedia("(max-width: 1175px)").matches
-  const desktopWindow = window.matchMedia("(min-width: 1175px)").matches
-  const navMobileDisplay = navMobile.style.display
-  const menuText = document.getElementById("menu-text");
+window.addEventListener('load', start);
 
+const navMobile = document.getElementById('mobile-nav');
+const menuButton = document.getElementById('menu-button');
 
-  if (mobileWindow && (navMobileDisplay === 'none' || navMobileDisplay === '')) {
-    navMobile.style.display = "flex";
-    menuButton.style.backgroundColor = "#77a466"
-    menuText.style.backgroundColor = "#77a466"
-    menuText.style.color = "#fff"
+function start() {
+  navMobile.addEventListener('click', navMenuFuncionality);
+  menuButton.addEventListener('click', navMenuFuncionality);
+}
+
+const navMenuFuncionality = () => {
+  const mobileWindow = window.matchMedia('(max-width: 1175px)').matches;
+  const menuText = document.getElementById('menu-text');
+  const navMobileDisplay = navMobile.style.display;
+
+  if (
+    mobileWindow &&
+    (navMobileDisplay === 'none' || navMobileDisplay === '')
+  ) {
+    navMobile.style.display = 'flex';
+    menuButton.style.backgroundColor = '#77a466';
+    menuText.style.backgroundColor = '#77a466';
+    menuText.style.color = '#fff';
   } else {
-    navMobile.style.display ="none";
-    menuButton.style.backgroundColor = "#fff"
-    menuText.style.backgroundColor = "#fff"
-    menuText.style.color = "#77a466"
+    navMobile.style.display = 'none';
+    menuButton.style.backgroundColor = '#fff';
+    menuText.style.backgroundColor = '#fff';
+    menuText.style.color = '#77a466';
   }
 };
