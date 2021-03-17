@@ -1,30 +1,46 @@
 window.addEventListener('load', start);
 
-const navMobile = document.getElementById('mobile-nav');
+const nav = document.getElementById('nav');
 const menuButton = document.getElementById('menu-button');
+const menuText = document.getElementById('menu-text');
 
 function start() {
-  navMobile.addEventListener('click', navMenuFuncionality);
-  menuButton.addEventListener('click', navMenuFuncionality);
+  menuTypeSelector();
+  window.addEventListener('resize', menuTypeSelector);
+  menuButton.addEventListener('click', openMenu);
 }
-
-const navMenuFuncionality = () => {
+const menuTypeSelector = () => {
   const mobileWindow = window.matchMedia('(max-width: 1175px)').matches;
-  const menuText = document.getElementById('menu-text');
-  const navMobileDisplay = navMobile.style.display;
-
-  if (
-    mobileWindow &&
-    (navMobileDisplay === 'none' || navMobileDisplay === '')
-  ) {
-    navMobile.style.display = 'flex';
-    menuButton.style.backgroundColor = '#77a466';
-    menuText.style.backgroundColor = '#77a466';
-    menuText.style.color = '#fff';
+  if (mobileWindow) {
+    menuButton.style.display = 'flex';
+    nav.style.display = 'none';
+    if (window.matchMedia('(min-width: 600px)').matches) {
+      nav.style.width = '25%';
+    }
+    if (nav.className !== 'mobile') {
+      nav.className = 'mobile';
+    }
+    nav.style.width = '100%';
   } else {
-    navMobile.style.display = 'none';
-    menuButton.style.backgroundColor = '#fff';
-    menuText.style.backgroundColor = '#fff';
-    menuText.style.color = '#77a466';
+    menuButton.style.display = 'none';
+    nav.className = 'desktop';
+    nav.style.display = 'flex';
+    nav.style.width = '70%';
+  }
+};
+
+const openMenu = () => {
+  if (window.matchMedia('(min-width: 600px)').matches) {
+    nav.style.width = '25%';
+  } else {
+    nav.style.width = '100%';
+    menuButton.style.zIndex = '2';
+    menuButton.style.display = 'flex';
+    menuText.style.color = '#fff';
+  }
+  if (nav.style.display === 'none' || nav.style.display === '') {
+    nav.style.display = 'flex';
+  } else {
+    nav.style.display = 'none';
   }
 };
